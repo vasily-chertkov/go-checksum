@@ -81,6 +81,10 @@ func DirFiles(dir, prefix string) ([]string, error) {
 			}
 			return nil
 		}
+		// skip .git worktree file
+		if info.Name() == ".git" {
+			return nil
+		}
 		rel := file
 		if dir != "." {
 			rel = file[len(dir)+1:]
